@@ -1,9 +1,3 @@
--- Adriel Eringer – RM 78714
--- Alex Lam – RM 78237
--- Athila Fernando – RM 77826
--- Breno Pitol – RM 77888
--- Guilherme Jordão – RM 78514
-
 DROP SEQUENCE SEQ_BAIRRO;
 DROP TABLE T_SPG_BAIRRO CASCADE CONSTRAINTS;
 DROP SEQUENCE SEQ_CIDADE;
@@ -537,51 +531,3 @@ ALTER TABLE t_spg_usuario_fone
 ALTER TABLE t_spg_venda
     ADD CONSTRAINT fk_spg_venda_cli FOREIGN KEY ( cd_usuario )
         REFERENCES t_spg_usuario ( cd_usuario );
-
---  ERROR: No Discriminator Column found in Arc Arc_1 - constraint trigger for Arc cannot be generated 
-
---  ERROR: No Discriminator Column found in Arc Arc_1 - constraint trigger for Arc cannot be generated
-
-
-
--- Relatório do Resumo do Oracle SQL Developer Data Modeler: 
--- 
--- CREATE TABLE                            30
--- CREATE INDEX                             5
--- ALTER TABLE                             86
--- CREATE VIEW                              0
--- ALTER VIEW                               0
--- CREATE PACKAGE                           0
--- CREATE PACKAGE BODY                      0
--- CREATE PROCEDURE                         0
--- CREATE FUNCTION                          0
--- CREATE TRIGGER                           0
--- ALTER TRIGGER                            0
--- CREATE COLLECTION TYPE                   0
--- CREATE STRUCTURED TYPE                   0
--- CREATE STRUCTURED TYPE BODY              0
--- CREATE CLUSTER                           0
--- CREATE CONTEXT                           0
--- CREATE DATABASE                          0
--- CREATE DIMENSION                         0
--- CREATE DIRECTORY                         0
--- CREATE DISK GROUP                        0
--- CREATE ROLE                              0
--- CREATE ROLLBACK SEGMENT                  0
--- CREATE SEQUENCE                          0
--- CREATE MATERIALIZED VIEW                 0
--- CREATE SYNONYM                           0
--- CREATE TABLESPACE                        0
--- CREATE USER                              0
--- 
--- DROP TABLESPACE                          0
--- DROP DATABASE                            0
--- 
--- REDACTION POLICY                         0
--- 
--- ORDS DROP SCHEMA                         0
--- ORDS ENABLE SCHEMA                       0
--- ORDS ENABLE OBJECT                       0
--- 
--- ERRORS                                   2
--- WARNINGS                                 0
