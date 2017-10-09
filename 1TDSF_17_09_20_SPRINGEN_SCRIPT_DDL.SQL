@@ -1,3 +1,9 @@
+-- Adriel Eringer – RM 78714
+-- Alex Lam – RM 78237
+-- Athila Fernando – RM 77826
+-- Breno Pitol – RM 77888
+-- Guilherme Jordão – RM 78514
+
 DROP SEQUENCE SEQ_BAIRRO;
 DROP TABLE T_SPG_BAIRRO CASCADE CONSTRAINTS;
 DROP SEQUENCE SEQ_CIDADE;
@@ -157,10 +163,10 @@ ALTER TABLE t_spg_estoque_end ADD CONSTRAINT pk_spg_est_end PRIMARY KEY ( nr_cep
 
 CREATE TABLE t_spg_fornecedor (
     cd_fornecedor     NUMBER(4) NOT NULL,
-    nm_fornecedor     VARCHAR2(20 CHAR) NOT NULL,
-    ds_email          VARCHAR2(20 CHAR) NOT NULL,
+    nm_fornecedor     VARCHAR2(30 CHAR) NOT NULL,
+    ds_email          VARCHAR2(50 CHAR) NOT NULL,
     nr_cnpj           NUMBER(14) NOT NULL,
-    ds_razao_social   VARCHAR2(20 CHAR) NOT NULL
+    ds_razao_social   VARCHAR2(50 CHAR) NOT NULL
 );
 
 CREATE SEQUENCE seq_fornecedor MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 25;
@@ -218,7 +224,8 @@ ALTER TABLE t_spg_logradouro ADD CONSTRAINT pk_spg_log PRIMARY KEY ( nr_cep );
 CREATE TABLE t_spg_mat_prima_fornecida (
     cd_materia_prima       NUMBER(4) NOT NULL,
     cd_fornecedor          NUMBER(4) NOT NULL,
-    qt_materia_fornecida   NUMBER(5) NOT NULL
+    qt_materia_fornecida   NUMBER(5) NOT NULL,
+    vl_mat_forn            NUMBER(8,2) NOT NULL
 );
 
 CREATE SEQUENCE seq_mat_prima_fornecida MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 25;
@@ -231,7 +238,8 @@ CREATE TABLE t_spg_mat_solicitada (
     cd_fornecedor      NUMBER(4) NOT NULL,
     qt_comprada        NUMBER(5) NOT NULL,
     dt_solicitacao     VARCHAR2(10) NOT NULL,
-    hr_solicitacao     VARCHAR2(10) NOT NULL
+    hr_solicitacao     VARCHAR2(10) NOT NULL,
+    vl_mat_solicitada  NUMBER(8,2) NOT NULL
 );
 
 CREATE SEQUENCE seq_mat_solicitada MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 25;
@@ -288,7 +296,7 @@ CREATE TABLE t_spg_pedido_materia_prima (
 
 CREATE SEQUENCE seq_pedido_materia_prima MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 25;
 
-ALTER TABLE t_spg_pedido_materia_prima ADD CONSTRAINT pk_spg_pedido_mp PRIMARY KEY ( cd_usuario );
+--ALTER TABLE t_spg_pedido_materia_prima ADD CONSTRAINT pk_spg_pedido_mp PRIMARY KEY ( cd_usuario );
 
 CREATE TABLE t_spg_prod_estoque (
     qt_estocada   NUMBER(6) NOT NULL,
@@ -301,11 +309,11 @@ CREATE SEQUENCE seq_prod_estoque MINVALUE 1 START WITH 1 INCREMENT BY 1 CACHE 25
 ALTER TABLE t_spg_prod_estoque ADD CONSTRAINT pk_spg_prod_est PRIMARY KEY ( cd_produto,cd_estoque );
 
 CREATE TABLE t_spg_produto (
-    cd_produto          NUMBER(2) NOT NULL,
-    ds_produto          VARCHAR2(50 CHAR) NOT NULL,
+    cd_produto          NUMBER(4) NOT NULL,
+    ds_produto          VARCHAR2(150 CHAR) NOT NULL,
     vl_preco_unitario   NUMBER(5,2) NOT NULL,
     ds_disponibilidade  VARCHAR2(50 CHAR) NOT NULL,
-    nm_produto          VARCHAR2(20 CHAR) NOT NULL,
+    nm_produto          VARCHAR2(50 CHAR) NOT NULL,
     ds_url              VARCHAR2(100 CHAR) NOT NULL
 );
 
@@ -531,3 +539,51 @@ ALTER TABLE t_spg_usuario_fone
 ALTER TABLE t_spg_venda
     ADD CONSTRAINT fk_spg_venda_cli FOREIGN KEY ( cd_usuario )
         REFERENCES t_spg_usuario ( cd_usuario );
+
+--  ERROR: No Discriminator Column found in Arc Arc_1 - constraint trigger for Arc cannot be generated 
+
+--  ERROR: No Discriminator Column found in Arc Arc_1 - constraint trigger for Arc cannot be generated
+
+
+
+-- Relatório do Resumo do Oracle SQL Developer Data Modeler: 
+-- 
+-- CREATE TABLE                            30
+-- CREATE INDEX                             5
+-- ALTER TABLE                             86
+-- CREATE VIEW                              0
+-- ALTER VIEW                               0
+-- CREATE PACKAGE                           0
+-- CREATE PACKAGE BODY                      0
+-- CREATE PROCEDURE                         0
+-- CREATE FUNCTION                          0
+-- CREATE TRIGGER                           0
+-- ALTER TRIGGER                            0
+-- CREATE COLLECTION TYPE                   0
+-- CREATE STRUCTURED TYPE                   0
+-- CREATE STRUCTURED TYPE BODY              0
+-- CREATE CLUSTER                           0
+-- CREATE CONTEXT                           0
+-- CREATE DATABASE                          0
+-- CREATE DIMENSION                         0
+-- CREATE DIRECTORY                         0
+-- CREATE DISK GROUP                        0
+-- CREATE ROLE                              0
+-- CREATE ROLLBACK SEGMENT                  0
+-- CREATE SEQUENCE                          0
+-- CREATE MATERIALIZED VIEW                 0
+-- CREATE SYNONYM                           0
+-- CREATE TABLESPACE                        0
+-- CREATE USER                              0
+-- 
+-- DROP TABLESPACE                          0
+-- DROP DATABASE                            0
+-- 
+-- REDACTION POLICY                         0
+-- 
+-- ORDS DROP SCHEMA                         0
+-- ORDS ENABLE SCHEMA                       0
+-- ORDS ENABLE OBJECT                       0
+-- 
+-- ERRORS                                   2
+-- WARNINGS                                 0
